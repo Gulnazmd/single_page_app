@@ -1,0 +1,24 @@
+.UsersDiv {
+  display: inline-flex;
+  margin-top: -30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+}
+@media screen and (max-width: 700px) {
+  .UsersDiv {
+    display: flex;
+  }
+  .Photo {
+    height: 90px;
+    width: 90px;
+  }
+}
+.Photo {
+  object-fit: cover;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  grid-area: 1 / 1 / 4 / 2;
+}
+
