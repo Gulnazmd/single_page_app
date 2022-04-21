@@ -1,0 +1,7 @@
+.Photo {
+  object-fit: cover;
+  height: 260px;
+  width: 260px;
+  border-radius: 50%;
+  grid-area: 1 / 1 / 4 / 2;
+}

@@ -3,6 +3,7 @@ import './PhotoDetails.css';
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../../UseFetch/UseFetch';
 import { useParams } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 
 
@@ -27,7 +28,7 @@ function PhotoDetails () {
                     <img className="Photo" src={photo.url} alt={photo.url} />
                     <h3>{photo.title}</h3>
                 </div>)}
-                <button onClick={BackHandle}>Back to Gallery</button>
+                <Button onClick={BackHandle}>Back to Gallery</Button>
         </div>
             )
 }

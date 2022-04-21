@@ -3,6 +3,8 @@ import './Gallery.css';
 import Photos from '../../components/Photos/Photos';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import Button from 'react-bootstrap/Button';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 function Gallery () {
 
@@ -25,13 +27,18 @@ function Gallery () {
         dispatch({ type: 'next', payload: 1 })
         dispatch({type: 'show', payload: photo})
     }
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          Подробнее
+        </Tooltip>
+      );
 
     useEffect(() => {
         setPics({ loading: true });
         axios.get('https://jsonplaceholder.typicode.com/photos')
             .then((photos) => {
                 const allPhotos = photos.data;
-                const myPage = allPhotos.slice(0, 6)
+                const myPage = allPhotos.slice(0, 24)
                 setPics({ loading: false, photos: allPhotos, curPage: myPage })
             });
 
@@ -42,12 +49,18 @@ function Gallery () {
         return (
             <div className='Users'>
                 <h1>All photos</h1>
-                <Photos isLoading={myPics.loading} photos={myPics.curPage}>
-                    {myPhotos}
-                </Photos>
-                <button onClick={() => handlePrev()}>Prev</button>
+                <OverlayTrigger
+                    placement="right"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={renderTooltip}
+                >
+                    <Photos isLoading={myPics.loading} photos={myPics.curPage}>
+                        {myPhotos}
+                    </Photos>
+                </OverlayTrigger>
+                <Button onClick={() => handlePrev()}>Prev</Button>
                 <span style={{ fontSize: '17px', color: 'grey', marginTop: '12px' }}>{page < 1 ? 1 : page}</span>
-                <button onClick={() => handleNext()}>Next</button>
+                <Button onClick={() => handleNext()}>Next</Button>
 
             </div>
         )
