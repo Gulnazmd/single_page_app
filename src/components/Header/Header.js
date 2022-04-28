@@ -7,7 +7,6 @@ import NavbarToggle from 'react-bootstrap/esm/NavbarToggle';
 
 export default function Header(props) {
 
-
 	return (
 		<Navbar bg="light" expand={false}>
       <Container fluid>

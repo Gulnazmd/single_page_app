@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import useFetch from '../../UseFetch/UseFetch';
 import { useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import Spinner from "../../UI/Spinner/Spinner";
 
 
 
@@ -21,7 +22,7 @@ function PhotoDetails () {
     return (
         <div className="PostDetails">
 
-             { isPending && <div>Loading...</div>}
+            {isPending ? <Spinner /> : <div>{ error}</div> }
              { error && <div>{error}</div>}
             {photo && (
                 <div className="usersDiv">

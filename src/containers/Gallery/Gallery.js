@@ -4,7 +4,6 @@ import Photos from '../../components/Photos/Photos';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 function Gallery () {
 
@@ -27,11 +26,6 @@ function Gallery () {
         dispatch({ type: 'next', payload: 1 })
         dispatch({type: 'show', payload: photo})
     }
-    const renderTooltip = (props) => (
-        <Tooltip id="button-tooltip" {...props}>
-          Подробнее
-        </Tooltip>
-      );
 
     useEffect(() => {
         setPics({ loading: true });
@@ -45,19 +39,12 @@ function Gallery () {
     }, [ setPics ]
 
     );
-
         return (
             <div className='Users'>
                 <h1>All photos</h1>
-                <OverlayTrigger
-                    placement="right"
-                    delay={{ show: 250, hide: 400 }}
-                    overlay={renderTooltip}
-                >
-                    <Photos isLoading={myPics.loading} photos={myPics.curPage}>
-                        {myPhotos}
-                    </Photos>
-                </OverlayTrigger>
+                <Photos isLoading={myPics.loading} photos={myPics.curPage}>
+                          {myPhotos}
+                </Photos>
                 <Button onClick={() => handlePrev()}>Prev</Button>
                 <span style={{ fontSize: '17px', color: 'grey', marginTop: '12px' }}>{page < 1 ? 1 : page}</span>
                 <Button onClick={() => handleNext()}>Next</Button>
